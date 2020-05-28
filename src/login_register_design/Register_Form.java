@@ -5,6 +5,16 @@
  */
 package login_register_design;
 
+import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.border.Border;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ibaba
@@ -16,6 +26,22 @@ public class Register_Form extends javax.swing.JFrame {
      */
     public Register_Form() {
         initComponents();
+        
+        //center form
+        this.setLocationRelativeTo(null);
+        
+         // create a yellow border for the jpanel_title 
+        // 0 border in the top
+         Border jpanel_title_border = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.yellow);
+         // set the border to the jPanel_title
+         jPanel_title.setBorder(jpanel_title_border);
+                  
+        //create a black border for the close & minimize jlables
+         Border label_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
+         jLabel_minimize.setBorder(label_border);
+         jLabel_close.setBorder(label_border);
+         
+        
     }
 
     /**
@@ -27,21 +53,403 @@ public class Register_Form extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel_username = new javax.swing.JLabel();
+        jLabel_password = new javax.swing.JLabel();
+        jTextField_Username = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jButton_Regsiter = new javax.swing.JButton();
+        jLabel_minimize = new javax.swing.JLabel();
+        jLabel_close = new javax.swing.JLabel();
+        jPanel_title = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel_username.setOpaque(true);
+
+        jLabel_password.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_password.setOpaque(true);
+
+        jTextField_Username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField_Username.setForeground(new java.awt.Color(153, 153, 153));
+        jTextField_Username.setText("username");
+        jTextField_Username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_UsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_UsernameFocusLost(evt);
+            }
+        });
+
+        jPasswordField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPasswordField.setForeground(new java.awt.Color(153, 153, 153));
+        jPasswordField.setText("..........");
+        jPasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordFieldFocusLost(evt);
+            }
+        });
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jButton_Regsiter.setBackground(new java.awt.Color(235, 47, 6));
+        jButton_Regsiter.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 24)); // NOI18N
+        jButton_Regsiter.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_Regsiter.setText("Register");
+        jButton_Regsiter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton_Regsiter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton_RegsiterMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton_RegsiterMouseExited(evt);
+            }
+        });
+        jButton_Regsiter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegsiterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_Regsiter, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_username, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField_Username, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jLabel_username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+                .addComponent(jButton_Regsiter, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        // set icon to the jlabel
+        jLabel_username.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/username_field.png")));
+        // set icon to the jlabel
+        jLabel_password.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/password_field.png")));
+
+        jLabel_minimize.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_minimize.setText("-");
+        jLabel_minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_minimize.setPreferredSize(new java.awt.Dimension(9, 15));
+        jLabel_minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_minimizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_minimizeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_minimizeMouseExited(evt);
+            }
+        });
+
+        jLabel_close.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel_close.setText("x");
+        jLabel_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_close.setPreferredSize(new java.awt.Dimension(9, 15));
+        jLabel_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_closeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_closeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_closeMouseExited(evt);
+            }
+        });
+
+        jPanel_title.setBackground(new java.awt.Color(0, 84, 102));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Register ");
+
+        javax.swing.GroupLayout jPanel_titleLayout = new javax.swing.GroupLayout(jPanel_title);
+        jPanel_title.setLayout(jPanel_titleLayout);
+        jPanel_titleLayout.setHorizontalGroup(
+            jPanel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_titleLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel_titleLayout.setVerticalGroup(
+            jPanel_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_titleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel_minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_close, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_minimize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(42, 42, 42)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField_UsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_UsernameFocusGained
+        // TODO add your handling code here:
+
+        // clear the textfield ob focus if the text is "username"
+        if(jTextField_Username.getText().trim().toLowerCase().equals("username"))
+        {
+            jTextField_Username.setText("");
+            jTextField_Username.setForeground(Color.black);
+        }
+
+        // set a yellow border to the jlabel icon
+        Border jlabel_icon = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.yellow);
+        jLabel_username.setBorder(jlabel_icon);
+    }//GEN-LAST:event_jTextField_UsernameFocusGained
+
+    private void jTextField_UsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_UsernameFocusLost
+
+        // if the text field is equal to username or empty
+        // we will set the " username" text in the field
+        // on focus lost event
+
+        if(jTextField_Username.getText().trim().equals("")
+            || jTextField_Username.getText().trim().toLowerCase().equals("username"))
+        {
+            jTextField_Username.setText("username");
+            jTextField_Username.setForeground(new Color(153,153,153));
+        }
+
+        // remove the border from the jlabel icon
+        Border label_icons_border = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(153,153,153));
+        jLabel_username.setBorder(label_icons_border);
+
+    }//GEN-LAST:event_jTextField_UsernameFocusLost
+
+    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusGained
+        // TODO add your handling code here:
+
+        //clear the password field on focus if the text us 'password"
+
+        // get the password text
+        String pass = String.valueOf(jPasswordField.getPassword());
+
+        if(pass.trim().toLowerCase().equals("password"))
+        {
+            jPasswordField.setText("");
+            jPasswordField.setForeground(Color.black);
+        }
+
+        // set a yellow border to the jlabel icon
+        Border jlabel_icon = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.yellow);
+        jLabel_password.setBorder(jlabel_icon);
+    }//GEN-LAST:event_jPasswordFieldFocusGained
+
+    private void jPasswordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusLost
+
+        // if the paasword field is equal to password or empty
+        // we will set the "password" text in the field
+        // on focus lost event
+
+        String pass = String.valueOf(jPasswordField.getPassword());
+
+        if(pass.trim().equals("")||
+
+            pass.trim().toLowerCase().equals("password"))
+        {
+            jPasswordField.setText("password");
+            jPasswordField.setForeground(new Color(153,153,153));
+        }
+
+        // create a border with the color of the parent jpanel for the icons label for remove the move
+        Border label_icons_border = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(153, 153 , 153));
+        jLabel_username.setBorder(label_icons_border);
+
+    }//GEN-LAST:event_jPasswordFieldFocusLost
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jButton_RegsiterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_RegsiterMouseEntered
+
+        jButton_Regsiter.setBackground(new Color(255,20,2));
+
+    }//GEN-LAST:event_jButton_RegsiterMouseEntered
+
+    private void jButton_RegsiterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_RegsiterMouseExited
+
+        // set jbutton background
+        jButton_Regsiter.setBackground(new Color(235,47,6));
+    }//GEN-LAST:event_jButton_RegsiterMouseExited
+
+    private void jButton_RegsiterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegsiterActionPerformed
+        // TODO add your handling code here:
+
+        PreparedStatement st;
+        ResultSet rs;
+
+        //get the username & password
+        String username = jTextField_Username.getText();
+        String password = String.valueOf(jPasswordField.getPassword());
+
+        //create a select query to check if the username and the password exists in the database
+        String query = "SELECT * FROM  `users` WHERE `username` = ? AND  `password` = ? ";
+        try {
+
+            st = My_CNX.getConnection().prepareStatement(query);
+
+            st.setString(1, username);
+            st.setString(2, password);
+            rs = st.executeQuery();
+            if(rs.next())
+            {
+                //show a new form
+                Menu_Form form = new Menu_Form();
+                form.setVisible(true);
+                form.pack();
+                form.setLocationRelativeTo(null);
+
+                //close the current
+
+                this.dispose();
+            }else{
+                //error message
+                JOptionPane.showMessageDialog(null, "Invalid  Username / Password", "Login Error", 2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login_Form.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton_RegsiterActionPerformed
+
+    private void jLabel_minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minimizeMouseClicked
+
+        this.setState(1); // minimize when you clicked on - icon
+    }//GEN-LAST:event_jLabel_minimizeMouseClicked
+
+    private void jLabel_minimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minimizeMouseEntered
+
+        Border label_border = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.white);
+        jLabel_minimize.setBorder(label_border);
+        jLabel_minimize.setForeground(Color.white);
+
+    }//GEN-LAST:event_jLabel_minimizeMouseEntered
+
+    private void jLabel_minimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minimizeMouseExited
+
+        Border label_border = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.black);
+        jLabel_minimize.setBorder(label_border);
+        jLabel_minimize.setForeground(Color.black);
+    }//GEN-LAST:event_jLabel_minimizeMouseExited
+
+    private void jLabel_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel_closeMouseClicked
+
+    private void jLabel_closeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseEntered
+        // TODO add your handling code here:
+        Border label_border = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.white);
+        jLabel_close.setBorder(label_border);
+        jLabel_close.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel_closeMouseEntered
+
+    private void jLabel_closeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseExited
+
+        Border label_border = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.black);
+        jLabel_close.setBorder(label_border);
+        jLabel_close.setForeground(Color.black);
+
+    }//GEN-LAST:event_jLabel_closeMouseExited
 
     /**
      * @param args the command line arguments
@@ -79,5 +487,17 @@ public class Register_Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Regsiter;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel_close;
+    private javax.swing.JLabel jLabel_minimize;
+    private javax.swing.JLabel jLabel_password;
+    private javax.swing.JLabel jLabel_username;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel_title;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextField_Username;
     // End of variables declaration//GEN-END:variables
 }
